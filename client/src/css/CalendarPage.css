@@ -1,9 +1,9 @@
-.listPageContainer{
+.calendarPageContainer{
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to bottom, rgb(226, 226, 226), #fff, rgb(226, 226, 226));
+    background: linear-gradient(to right bottom, rgb(255, 138, 138), rgb(255, 184, 184), rgb(255, 104, 104));
 }
 .headerSection{
     width: 100%;
@@ -151,6 +151,68 @@
     background-color: rgb(255, 116, 106);
     box-shadow: 0px 5px 10px rgba(0,0,0,.2);
     border: none;
+}
+.weekContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.dayLabelContainer{
+    width: 14%;
+    padding-top: 14%;
+    box-sizing: border-box;
+    position: relative;
+}
+.dayLabel{
+    display:inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    font-size: 5vw;
+    font-family: Arial Black;
+    font-weight: 900;
+    color: rgb(75, 38, 38);
+}
+.day{
+    width: 14%;
+    padding-top: 14%;
+    box-sizing: border-box;
+    border: 1px solid rgb(250, 94, 94);
+    position: relative;
+}
+.end{
+    background: rgba(253, 115, 115, 0.4);
+}
+.mid{
+    background: rgba(253, 150, 150, 0.4);
+}
+.highlightShape{
+    display:inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    height: 60%;
+    border-radius: 100%;
+}
+.dayNum{
+    display:inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    font-size: 5vw;
+    font-family: Arial Black;
+    font-weight: 900;
+    color: rgb(75, 38, 38);
 }
 
 @media (max-width: 400px){

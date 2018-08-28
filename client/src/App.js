@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import LoginPage from './components/LoginPage';
-import ListPage from './components/ListPage';
+import CalendarPage from './components/CalendarPage';
 
 class App extends Component {
 
   render() {
-  let display = (localStorage.getItem("token")) ? <ListPage /> : <LoginPage />;
+  let display = (localStorage.getItem("token")) ? <CalendarPage /> : <LoginPage />;
 
     return (
       <div className="App">
