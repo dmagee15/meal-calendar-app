@@ -68,9 +68,9 @@ export function generateCalendar(date){
     let targetIndex = currentDayIndex-(daysArray[currentDayIndex].dayOfWeek-1)-14;
     let calculateRow = [];
     for (let x=targetIndex;x<targetIndex+35;x++){
-        console.log(x, daysArray[x].day, daysArray[x].dayOfWeek);
+        let endWeek = daysArray[x].dayOfWeek===1||daysArray[x].dayOfWeek===7?"end":"mid";
         calculateRow.push(
-                    <div className={"day "}>
+                    <div className={"day "+endWeek} key={daysArray[x].day.toString()+daysArray[x].month.toString()+daysArray[x].year.toString()}>
                         <div className="highlightShape">
                         </div>
                         <p className="dayNum">{daysArray[x].day}</p>
@@ -78,7 +78,7 @@ export function generateCalendar(date){
         );
         if(daysArray[x].dayOfWeek===7){
             let tempArray = (
-                         <div className="weekContainer">
+                         <div className="weekContainer" key={daysArray[x].day.toString()+daysArray[x].month.toString()+daysArray[x].year.toString()+"week"}>
                              {calculateRow}
                          </div>
                          );

@@ -1,4 +1,19 @@
 import axios from 'axios';
+import { generateDayArray } from './../utility/generateDayArray';
+
+export function InitCalendar(){
+    return {
+            type: 'INIT_CALENDAR',
+            payload: generateDayArray()
+        }
+}
+
+export function changeActive(index){
+    return {
+            type: 'CHANGE_ACTIVE',
+            payload: index
+        }
+}
 
 export function Add(content){
     return function(dispatch){

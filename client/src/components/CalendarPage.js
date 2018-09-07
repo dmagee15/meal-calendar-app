@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logOut } from './../actions/auth';
-import { Add, Remove, Check, ClearAll, Update, Initialize } from './../actions/list';
+import { Add, Remove, Check, ClearAll, Update, Initialize, InitCalendar, changeActive } from './../actions/list';
 import { checkUser } from './../actions/auth';
-import { daysInMonth } from './../utility/month';
+import { daysInMonth, getMonth } from './../utility/month';
 import { generateCalendar } from './../utility/generateCalendar';
 import './../css/CalendarPage.css';
 
@@ -49,6 +49,9 @@ class CalendarPage extends Component{
     clearAllHandler = () => {
         this.props.dispatch(ClearAll());
     }
+    changeActiveState = (index) => {
+        this.props.dispatch(changeActive(index));
+    }
     render(){
     let date = new Date();
     let year = date.getFullYear();
@@ -56,12 +59,39 @@ class CalendarPage extends Component{
     let dayOfWeek = date.getDay();
     let month = date.getMonth()+1;
 
-    let calendar = generateCalendar(date);
     let numDaysInCurrentMonth = daysInMonth(month);
     let numDaysInPreviousMonth = (month!==1)?daysInMonth(month-1):31;
     let numDaysInNextMonth = (month!==12)?daysInMonth(month+1):31;
     
-    console.log(calendar);
+
+    let targetIndex = this.props.currentDayIndex-(this.props.daysArray[this.props.currentDayIndex].dayOfWeek-1)-14;
+    let calendar = [];
+    let calculateRow = [];
+    for (let x=targetIndex;x<targetIndex+35;x++){
+        let endWeek = this.props.daysArray[x].dayOfWeek===1||this.props.daysArray[x].dayOfWeek===7?"end":"mid";
+        let active = this.props.daysArray[x].active?"active":"";
+        calculateRow.push(
+                    <div className={"day "+endWeek+" "}
+                    onClick={() => {this.changeActiveState(x)}} 
+                    key={this.props.daysArray[x].day.toString()+this.props.daysArray[x].month.toString()+this.props.daysArray[x].year.toString()}>
+                        <div className="highlightShape">
+                        </div>
+                        <div className={active}>
+                        </div>
+                        <p className="dayMonth">{getMonth(this.props.daysArray[x].month)}</p>
+                        <p className="dayNum">{this.props.daysArray[x].day}</p>
+                    </div>
+        );
+        if(this.props.daysArray[x].dayOfWeek===7){
+            let tempArray = (
+                         <div className="weekContainer" key={this.props.daysArray[x].day.toString()+this.props.daysArray[x].month.toString()+this.props.daysArray[x].year.toString()+"week"}>
+                             {calculateRow}
+                         </div>
+                         );
+            calendar.push(tempArray);
+            calculateRow = [];
+        }
+    }
 
         return (
             <div className="calendarPageContainer">
@@ -98,6 +128,8 @@ const mapStateToProps = (state) => {
     return {
       user: state.user,
       tasks: state.tasks,
+      daysArray: state.daysArray,
+      currentDayIndex: state.currentDayIndex,
       loggedIn: state.loggedIn
     }
   }
