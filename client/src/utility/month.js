@@ -1,5 +1,5 @@
 export function daysInMonth(month, year){
-    switch(month){
+    switch(month.toString()){
         case '-1': return 30;
         case '-2': return 31;
         case '-3': return 30;
@@ -34,5 +34,23 @@ export function daysInMonth(month, year){
         }
         case '15': return 31;
         default: return 31;
+    }
+}
+
+export function getMonth(num){
+    switch(num.toString()){
+        case '1': return "Jan";
+        case '2': return "Feb";
+        case '3': return "Mar";
+        case '4': return "Apr";
+        case '5': return "May";
+        case '6': return "Jun";
+        case '7': return "Jul";
+        case '8': return "Aug";
+        case '9': return "Sep";
+        case '10': return "Oct";
+        case '11': return "Nov";
+        case '12': return "Dec";
+        default: return "Jan";
     }
 }

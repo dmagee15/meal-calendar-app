@@ -3,7 +3,7 @@
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to right bottom, rgb(255, 138, 138), rgb(255, 184, 184), rgb(255, 104, 104));
+    background: linear-gradient(to right bottom, rgb(231, 255, 236), rgb(196, 252, 189), rgb(225, 255, 216));
 }
 .headerSection{
     width: 100%;
@@ -183,11 +183,22 @@
     border: 1px solid rgb(250, 94, 94);
     position: relative;
 }
+.dayMonth{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5vw;
+    font-family: Arial Black;
+    font-weight: 500;
+    color: rgb(75, 38, 38);
+}
 .end{
-    background: rgba(253, 115, 115, 0.4);
+    background: rgba(89, 224, 96, 0.4);
 }
 .mid{
-    background: rgba(253, 150, 150, 0.4);
+    background: rgba(162, 253, 150, 0.4);
 }
 .highlightShape{
     display:inline-block;
@@ -213,6 +224,18 @@
     font-family: Arial Black;
     font-weight: 900;
     color: rgb(75, 38, 38);
+}
+.bMonth{
+    background: rgba(252, 191, 141, 0.4);
+}
+.exteriorHighlight{
+    position: absolute;
+    width:100%;
+    height:100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.07);
 }
 
 @media (max-width: 400px){
